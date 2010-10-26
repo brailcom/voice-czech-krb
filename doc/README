@@ -1,0 +1,56 @@
+The general way of making a Czech diphone voice is described in voice-czech-ph
+package.  This document describes how these new Czech voices were processed.
+This process was simplified because we received the recordings with diphone
+boundaries already labeled.
+
+* Copying the recording
+
+The received *.wav files were renamed appropriately and put into `wav'
+subdirectory.  The received diphone index with timings was converted to
+Festival + Festival Czech notation and put to dic/krbdiph.est.  It may be
+necessary to invert the WAV files, e.g. using sox like:
+
+  $ sox -v -1 INPUT.wan OUTPUT.wav
+
+* Generating the #-# diphone (silence)
+
+Sox options have changed since voice-czech-ph so we must use modify the sox
+command line:
+
+  $ dd if=/dev/zero of=krb0000.raw bs=100000 count=1
+  $ sox -r 32k -e signed -b 16 -c 1 krb0000.raw krb0000.wav
+
+* Looking for pitchmarks
+
+Using the copied scripts from voice-czech-ph:
+
+  $ export ESTDIR=/usr
+  $ export FESTVOXDIR=...path-to-source-directory.../festvox
+  $ mkdir pm
+  $ ./tools/make_pm_wave wav/*.wav
+  $ ./tools/make_pm_fix pm/*.pm
+
+* Generating LPC parameters
+
+tools/make_lpc script was copied from voice-czech-ph and -lpc_order parameter
+was adjusted according to the recording sampling rate.  Then the script was
+run:
+
+  $ export ESTDIR=/usr
+  $ export FESTVOXDIR=...path-to-source-directory.../festvox
+  $ mkdir lpc
+  $ ./tools/make_lpc wav/*.wav
+
+* Creating the voice definition file
+
+`festvox' directory was created.  The language definition file in it was copied
+and renamed from its voice-czech-ph counterpart.  Everything in it was renamed
+from `ph' to `krb'.  Additionally f0_mean was adjusted, to a common frequency
+of the recording determined by examining some *.wav file using a sound editor.
+f0_std was also adjusted in accordance with the f0_mean change.
+
+* Creating Makefile
+
+Makefile and make-group.scm files were copied from voice-czech-ph and adjusted.
+Especially everything about power factors was removed from Makefile as we
+hadn't adjusted power factors in this recording.
