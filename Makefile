@@ -16,6 +16,7 @@ all: festvox/czech_$(voice_name).scm lpc-files group/$(voice_name).group
 
 lpc-files: $(patsubst wav/%.wav, lpc/%.lpc, $(wildcard wav/*.wav))
 lpc/$(voice_name)0000.lpc: wav/$(voice_name)0000.wav pm/$(voice_name)0000.pm
+	mkdir -p lpc
 	./tools/make_lpc $<
 lpc/%.lpc: wav/%.wav pm/%.pm
 	./tools/make_lpc $<
@@ -24,6 +25,7 @@ festvox/czech_$(voice_name).scm: festvox/czech_$(voice_name).scm.in
 	sed 's/DESTDIR/$(subst /,\/,$(destdir))/' $< > $@
 
 group/$(voice_name).group: lpc-files
+	mkdir -p group
 	festival -b make-group.scm
 
 clean:
