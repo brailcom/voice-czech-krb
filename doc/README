@@ -30,6 +30,8 @@ Using the copied scripts from voice-czech-ph:
   $ ./tools/make_pm_wave wav/*.wav
   $ ./tools/make_pm_fix pm/*.pm
 
+It may be necessary to change PM_ARGS in ./tools/make_pm_wave.
+
 * Generating LPC parameters
 
 tools/make_lpc script was copied from voice-czech-ph and -lpc_order parameter
