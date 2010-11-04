@@ -18,7 +18,7 @@ lpc-files: $(patsubst wav/%.wav, lpc/%.lpc, $(wildcard wav/*.wav))
 lpc/$(voice_name)0000.lpc: wav/$(voice_name)0000.wav pm/$(voice_name)0000.pm
 	mkdir -p lpc
 	./tools/make_lpc $<
-lpc/%.lpc: wav/%.wav pm/%.pm
+lpc/%.lpc: wav/%.wav pm/%.pm etc/powfacts
 	./tools/make_lpc $<
 
 festvox/czech_$(voice_name).scm: festvox/czech_$(voice_name).scm.in
