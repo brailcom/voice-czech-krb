@@ -10,7 +10,7 @@ subdirectory.  The received diphone index with timings was converted to
 Festival + Festival Czech notation and put to dic/krbdiph.est.  It may be
 necessary to invert the WAV files, e.g. using sox like:
 
-  $ sox -v -1 INPUT.wan OUTPUT.wav
+  $ sox -v -1 INPUT.wav OUTPUT.wav
 
 * Generating the #-# diphone (silence)
 
