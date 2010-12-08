@@ -1,13 +1,12 @@
 EST_File Track
 DataType ascii
-NumFrames 265
+NumFrames 264
 NumChannels 0
 NumAuxChannels 0
 EqualSpace 0
 BreaksPresent true
 file_type 14
 EST_Header_End
-0.004906	1 	
 0.007562	1 	
 0.012875	1 	
 0.015812	1 	
