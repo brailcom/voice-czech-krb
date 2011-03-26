@@ -1,0 +1,53 @@
+Installation instructions for voice-czech-krb
+============================================
+
+* Prerequisities
+
+This voice works with Festival 1.4.3 or higher.
+
+voice-czech-krb contains just a Czech voice.  To synthesize something, you need
+festival-czech package providing Czech support for Festival.  festival-czech is
+available from http://www.freebsoft.org/festival-czech .  To install it, follow
+its installation instructions.
+
+* Building the voice
+
+If you install from the binary distribution, skip this step.
+
+In order to build the voice data, make sure you have the following additional
+software installed:
+
+- Festvox 2.0, available from http://www.festvox.org/download.html .
+
+- Edinburgh Speech Tools (Debian package speech-tools).
+
+Then just invoke `make'.  If it fails, it is most likely because you don't have
+installed all the tools mentioned above or you don't have properly set and
+exported the environment variables ESTDIR and FESTVOXDIR (they should point to
+the Edinburgh Speech Tools and Festvox installation directories respectively).
+
+* Installing the voice
+
+Run `make install'.  You may want to look at the beginning of Makefile
+(variable `festival_voices_path') to adjust the installation path before
+running the command.
+
+If you don't have installed the standard English Festival voice or if you want
+to set this Czech voice as the default Festival voice, add the following line
+to one of the Festival initialization files (usually /etc/festival.scm for
+system wide settings or ~/.festivalrc for user specific settings):
+
+  (set! voice_default 'voice_czech_krb)
+
+* Running the voice
+
+Start Festival and call:
+
+  (voice_czech_krb)
+
+Now Festival should speak Czech!
+
+
+Local Variables:
+mode: outline
+End:
