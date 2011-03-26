@@ -56,7 +56,7 @@ dist: clean dist-src dist-bin
 dist-src:
 	rm -rf $(package)-$(version) $(package)-$(version).tar $(package)-$(version).tar.gz
 	mkdir $(package)-$(version)
-	cp -a COPYING INSTALL Makefile README* *.scm dic doc festvox pm tools wav $(package)-$(version)/
+	cp -a COPYING INSTALL Makefile README* *.scm dic doc etc festvox pm tools wav $(package)-$(version)/
 	mkdir $(package)-$(version)/group
 	mkdir $(package)-$(version)/lpc
 	for d in `find $(package)-$(version) -name .git`; do rm -r $$d; done
