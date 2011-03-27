@@ -54,14 +54,7 @@ uninstall:
 dist: clean dist-src dist-bin
 
 dist-src:
-	rm -rf $(package)-$(version) $(package)-$(version).tar $(package)-$(version).tar.gz
-	mkdir $(package)-$(version)
-	cp -a COPYING INSTALL Makefile README* *.scm dic doc etc festvox pm tools wav $(package)-$(version)/
-	mkdir $(package)-$(version)/group
-	mkdir $(package)-$(version)/lpc
-	for d in `find $(package)-$(version) -name .git`; do rm -r $$d; done
-	tar cf $(package)-$(version).tar $(package)-$(version)
-	gzip -9 $(package)-$(version).tar
+	git archive --format=tar --prefix=$(package)-$(version)/ HEAD | gzip -9 -c > $(package)-$(version).tar.gz
 
 dist-bin: all
 	rm -rf $(package)-bin-$(version) $(package)-bin-$(version).tar $(package)-bin-$(version).tar.gz
