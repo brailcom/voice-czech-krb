@@ -29,9 +29,9 @@ group/$(voice_name).group: lpc-files
 	festival -b make-group.scm
 
 clean:
-	rm -rf $(package)-$(version) $(package)-$(version).tar
+	rm -rf $(package)-$(version)
 	rm -rf $(package)-bin-$(version) $(package)-bin-$(version).tar
-	rm -f $(package)-$(version).tar.gz $(package)-bin-$(version).tar.gz
+	rm -f $(package)-$(version).tar.bz2 $(package)-bin-$(version).tar.bz2
 	rm -f festvox/czech_$(voice_name).scm
 
 distclean: clean
@@ -54,13 +54,13 @@ uninstall:
 dist: clean dist-src dist-bin
 
 dist-src:
-	git archive --format=tar --prefix=$(package)-$(version)/ HEAD | gzip -9 -c > $(package)-$(version).tar.gz
+	git archive --format=tar --prefix=$(package)-$(version)/ HEAD | bzip2 -9 -c > $(package)-$(version).tar.bz2
 
 dist-bin: all
-	rm -rf $(package)-bin-$(version) $(package)-bin-$(version).tar $(package)-bin-$(version).tar.gz
+	rm -rf $(package)-bin-$(version) $(package)-bin-$(version).tar $(package)-bin-$(version).tar.bz2
 	mkdir $(package)-bin-$(version)
 	cp -a COPYING INSTALL README* festvox group $(package)-bin-$(version)/
 	sed '/festival -b make-group.scm/d' Makefile > $(package)-bin-$(version)/Makefile
 	for d in `find $(package)-bin-$(version) -name .git`; do rm -r $$d; done
 	tar cf $(package)-bin-$(version).tar $(package)-bin-$(version)
-	gzip -9 $(package)-bin-$(version).tar
+	bzip2 -9 $(package)-bin-$(version).tar
