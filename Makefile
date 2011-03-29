@@ -7,7 +7,7 @@ estdir = /usr
 
 voice_name := krb
 package := voice-czech-$(voice_name)
-version := 0.1
+version := 1.0.0
 
 destdir = $(festival_voices_path)/czech/czech_$(voice_name)
 
