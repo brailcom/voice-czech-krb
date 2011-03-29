@@ -3,6 +3,9 @@ package.  This document describes how these new Czech voices were processed.
 This process was simplified because we received the recordings with diphone
 boundaries already labeled.
 
+You need to have an extracted source tarball of Festvox, the tarball is
+available from http://www.festvox.org/download.html .
+
 * Copying the recording
 
 The received *.wav files were renamed appropriately and put into `wav'
