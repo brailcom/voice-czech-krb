@@ -24,13 +24,12 @@ software installed:
   (Debian package festival)
 
 Then just invoke `make'.  If it fails, it is most likely because you don't have
-installed all the tools mentioned above or you don't have properly set and
-exported the environment variable ESTDIR (it should point to the Edinburgh
-Speech Tools).
+installed all the tools mentioned above or you don't have properly set the
+Makefile variable estdir (it should point to the Edinburgh Speech Tools), which
+defaults to /usr (which is fine on e.g. Debian systems). To e.g. use Speech Tools
+installed into /usr/local, use:
 
-On Debian, it usually suffices to just set ESTDIR to /usr, i.e.
-
-ESTDIR=/usr make
+make estdir=/usr/local
 
 * Installing the voice
 
